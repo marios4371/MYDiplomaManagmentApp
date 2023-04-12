@@ -14,6 +14,5 @@ public class Student  {
     private int yrsOfStudies;
     private double grade;
     private int remainCourses;
-
     private Applications applications;
 }
