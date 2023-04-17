@@ -1,6 +1,5 @@
 package model;
 
-import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,4 +16,5 @@ public class Professor {
 
     private DiplomaThesis diplomaThesis;
     private DiplomaSubject diplomaSubject;
+
 }

@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProfessorDAO extends JpaRepository<Professor, Integer>{
 
-    Optional<Professor> findByUsername(String username);
+    Professor findByUsername(String username);
 }
