@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import java.util.List;
 
 @Getter
 @Setter
@@ -15,6 +16,6 @@ public class Professor {
     private String speciality;
 
     private DiplomaThesis diplomaThesis;
-    private DiplomaSubject diplomaSubject;
+    //private List<DiplomaSubject> diplomaSubject;
 
 }

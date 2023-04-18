@@ -1,4 +1,4 @@
-package service.mydiplomamanagmentapp;
+package mydiplomamanagmentapp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

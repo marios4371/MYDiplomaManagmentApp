@@ -13,7 +13,9 @@ public interface ProfessorService extends UserService{
     Professor retrieveProfile(String username);
 
     List<DiplomaSubject> listProfessorSubjects(String title);
-    void addDiplomaSubject(DiplomaSubject diplomaSubject, String title);
+    void addDiplomaSubject(String title, DiplomaSubject diplomaSubject);
+    
+    DiplomaSubject allDiplomaSubjects(String title);
 
     void deleteDiplomaSubject(String title);
 

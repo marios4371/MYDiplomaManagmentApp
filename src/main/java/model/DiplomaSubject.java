@@ -14,4 +14,5 @@ public class DiplomaSubject {
     private String title;
     private String objective;
     private Application application;
+    private  Professor professor;
 }
