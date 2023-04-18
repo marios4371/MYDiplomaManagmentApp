@@ -15,7 +15,7 @@ public class Professor {
     private String fullName;
     private String speciality;
 
-    private DiplomaThesis diplomaThesis;
+    //private DiplomaThesis diplomaThesis;
     //private List<DiplomaSubject> diplomaSubject;
 
 }

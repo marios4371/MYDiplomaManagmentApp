@@ -20,5 +20,6 @@ public class DiplomaThesis implements Serializable {
 
     private DiplomaSubject diplomaSubject;
     private Student student;
+    private Professor professor;
 
 }

@@ -1,6 +1,7 @@
 package service;
 
 import dao.DiplomaSubjectDAO;
+import dao.DiplomaThesisDAO;
 import dao.ProfessorDAO;
 import model.Application;
 import model.DiplomaSubject;
@@ -18,6 +19,7 @@ import java.util.List;
 public class ProfessorServiceImpl extends UserServiceImpl implements ProfessorService{
     ProfessorDAO professorDAO;
     DiplomaSubjectDAO diplomaSubjectDAO;
+    DiplomaThesisDAO diplomaThesisDAO;
 
 
     @Override
@@ -86,7 +88,6 @@ public class ProfessorServiceImpl extends UserServiceImpl implements ProfessorSe
         if (diplomaSubject != null) {
             diplomaSubjectDAO.delete(diplomaSubject);
         }
-
     }
 
     @Override
@@ -97,7 +98,8 @@ public class ProfessorServiceImpl extends UserServiceImpl implements ProfessorSe
             logger.warning("Diploma subject with the given title does not exist.");
             return new ArrayList<>();
         }
-        List<Application> applications = diplomaSubject.getApplication();
+        List<Application> applications = new ArrayList<>();
+        applications.add(diplomaSubject.getApplication());
         if (numOfApps != null && applications.size() > numOfApps) {
             return applications.subList(0, numOfApps);
         }
@@ -105,8 +107,20 @@ public class ProfessorServiceImpl extends UserServiceImpl implements ProfessorSe
     }
 
     @Override
-    public List<DiplomaThesis> listProfessorTheses(String title) {
-        return null;
+    public List<DiplomaThesis> listProfessorTheses(String fullName) {
+        Professor professor = professorDAO.findByUsername(fullName);
+        if (professor == null) {
+            Logger logger = Logger.getLogger(ProfessorServiceImpl.class.getName());
+            logger.warning("Professor with the given name does not exist.");
+            return new ArrayList<>();
+        }
+        List<DiplomaThesis> professorTheses = new ArrayList<>();
+        for (DiplomaThesis diplomaThesis : diplomaThesisDAO.findAll()) {
+            if (diplomaThesis.getProfessor().equals(professor)) {
+                professorTheses.add(diplomaThesis);
+            }
+        }
+        return professorTheses;
     }
 
     @Override
