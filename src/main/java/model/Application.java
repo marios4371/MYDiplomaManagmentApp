@@ -8,6 +8,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class Application {
-    private String studentName;
+    private Student student;
     private String subjectName;
+
 }
