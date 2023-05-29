@@ -10,7 +10,10 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Entity
 @Table(name= "APPLICATION")
-public class Application extends BaseId{
+public class Application{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
     @ManyToOne
     @JoinColumn(name = "student_id")

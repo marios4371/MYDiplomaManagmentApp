@@ -12,7 +12,10 @@ import javax.persistence.*;
 @Entity
 @Table(name ="DIPLOMASUBJECT")
 @SequenceGenerator(name = "idGenerator", sequenceName = "DIPLOMASUBJECT.SEQ", initialValue = 1, allocationSize = 1)
-public class DiplomaSubject extends BaseId{
+public class DiplomaSubject{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
     @Column(length = 15,nullable = false)
     @NotNull

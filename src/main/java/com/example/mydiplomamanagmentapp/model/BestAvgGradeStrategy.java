@@ -1,16 +1,14 @@
 package com.example.mydiplomamanagmentapp.model;
 
 
-import com.example.mydiplomamanagmentapp.dao.ApplicationDAO;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
+@AllArgsConstructor
 public class BestAvgGradeStrategy extends TemplateStrategyAlgorithm{
     private int Th1;
-    public BestAvgGradeStrategy(ApplicationDAO applicationDAO, Student student, BestAvgGradeStrategy bestAvgGradeStrategy, FewestCoursesStrategy fewestCoursesStrategy, int th1) {
-        super(student, applicationDAO, bestAvgGradeStrategy, fewestCoursesStrategy);
-        this.Th1= th1;
-    }
+
     public int compareApplications(Application application, Application app){
         if(application.getStudent().getGrade()>= Th1 && app.getStudent().getGrade()>= Th1){
             if (application.getStudent().getGrade()> app.getStudent().getGrade()){
@@ -19,7 +17,6 @@ public class BestAvgGradeStrategy extends TemplateStrategyAlgorithm{
             else if (application.getStudent().getGrade()< app.getStudent().getGrade()){
                 return app.getStudent().getRegNum();
             }
-            return 0;
         }
         return 0;
     }

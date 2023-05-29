@@ -2,13 +2,14 @@ package com.example.mydiplomamanagmentapp.service;
 
 import com.example.mydiplomamanagmentapp.dao.DiplomaSubjectDAO;
 import com.example.mydiplomamanagmentapp.model.DiplomaSubject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class DiplomaSubjectServiceImpl implements DiplomaSubjectService{
-
+public class DiplomaSubjectServiceImpl implements DiplomaSubjectService {
+    @Autowired
     DiplomaSubjectDAO diplomaSubjectDAO;
 
     @Override

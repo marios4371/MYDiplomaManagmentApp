@@ -1,32 +1,24 @@
 package com.example.mydiplomamanagmentapp.model;
 
-import com.example.mydiplomamanagmentapp.dao.ApplicationDAO;
 import lombok.AllArgsConstructor;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
-public class TemplateStrategyAlgorithm implements BestApplicantStrategy {
-    Student student;
-    ApplicationDAO applicationDAO;
-    BestAvgGradeStrategy bestAvgGradeStrategy;
-    FewestCoursesStrategy fewestCoursesStrategy;
-
+public abstract class TemplateStrategyAlgorithm implements BestApplicantStrategy {
     @Override
     public Student findBestApplicant(List<Application> applications) {
-        return null;
-    }
-
-    public int compareApplications(Application application, Application app) {
-        List<Application> applicants = applicationDAO.findAll();
-        List<Application> bestApplicant = new ArrayList<>();
-        for (int i = 0; i < applicants.size(); i++) {
-            if ((bestAvgGradeStrategy.compareApplications(applicants.get(i), applicants.get(i+1)) == fewestCoursesStrategy.compareApplications(applicants.get(i), applicants.get(i+1))) == true ) {
-                return bestAvgGradeStrategy.compareApplications(applicants.get(i), applicants.get(i+1));
+        Application bestApplication= applications.get(0);
+        int applicationId;
+        for (int i = 0; i < applications.size(); i++) {
+            applicationId= compareApplications(bestApplication, applications.get(i));
+            if (applications.get(i).getId()== applicationId ) {
+                bestApplication = applications.get(i);
             }
-
         }
-        return 0;
+        return bestApplication.getStudent();
+
     }
+
+    public abstract int compareApplications(Application application, Application app);
 }

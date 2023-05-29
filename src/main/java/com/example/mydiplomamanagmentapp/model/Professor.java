@@ -1,32 +1,61 @@
 package com.example.mydiplomamanagmentapp.model;
 
-import com.sun.istack.NotNull;
+
 import lombok.*;
 import javax.persistence.*;
 
-@Getter
-@Setter
+
+
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(callSuper = true)
 @Entity
 @Table(name = "PROFESSOR")
-@SequenceGenerator(name = "idGenerator", sequenceName = "PROFESSOR.SEQ", initialValue = 1, allocationSize = 1)
-public class Professor extends BaseId {
+public class Professor{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-    @Column(length = 50, nullable = false, unique = true)
-    @NotNull
+    @Column(name = "fullName")
     private String fullName;
 
-    @Column(length = 50, nullable = false, unique = true)
-    @NotNull
-    private String password;
-
-    @Column(length = 20, nullable = false)
-    @NotNull
+    @Column(length = 20)
     private String speciality;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
+
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public void setSpeciality(String speciality) {
+        this.speciality = speciality;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public String getSpeciality() {
+        return speciality;
+    }
+
+    public User getUser() {
+        return user;
+    }
 }

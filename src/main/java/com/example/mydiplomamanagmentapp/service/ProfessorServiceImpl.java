@@ -4,7 +4,7 @@ import com.example.mydiplomamanagmentapp.dao.DiplomaSubjectDAO;
 import com.example.mydiplomamanagmentapp.dao.DiplomaThesisDAO;
 import com.example.mydiplomamanagmentapp.dao.ProfessorDAO;
 import com.example.mydiplomamanagmentapp.model.*;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
@@ -15,20 +15,25 @@ import java.util.List;
 
 @Service
 public class ProfessorServiceImpl implements ProfessorService{
+    @Autowired
     ProfessorDAO professorDAO;
+    @Autowired
     DiplomaSubjectDAO diplomaSubjectDAO;
+    @Autowired
     DiplomaThesisDAO diplomaThesisDAO;
 
 
 
-    @Override
+
+    /*@Override
     public Professor retrieveProfile(String fullName) {
-        return professorDAO.findByFullName(fullName);
-    }
+        return professorDAO.findByfullName(fullName);
+    }*/
     @Override
     public void saveProfessor(Professor professor){
         professorDAO.save(professor);
     }
+
 
     private boolean checkNullability(DiplomaSubject diplomaSubject, String fullName) {
         Logger logger = Logger.getLogger(ProfessorServiceImpl.class.getName());
@@ -48,11 +53,11 @@ public class ProfessorServiceImpl implements ProfessorService{
 
 
     @Override
-    public void addDiplomaSubject(String fullName, DiplomaSubject diplomaSubject) {
-        if(checkNullability(diplomaSubject, fullName)){
+    public void addDiplomaSubject(int id, DiplomaSubject diplomaSubject) {
+        /*if(checkNullability(diplomaSubject, id)){
             return;
-        }
-        Professor professor = professorDAO.findByFullName(fullName);
+        }*/
+        Professor professor = professorDAO.findById(id);
         if (professor == null) {
             Logger logger = Logger.getLogger(ProfessorServiceImpl.class.getName());
             logger.warning("Professor with the given name does not exist.");
@@ -68,8 +73,8 @@ public class ProfessorServiceImpl implements ProfessorService{
     }
 
     @Override
-    public List<DiplomaSubject> listProfessorSubjects(String fullName) {
-        Professor professor = professorDAO.findByFullName(fullName);
+    public List<DiplomaSubject> listProfessorSubjects(int id) {
+        Professor professor = professorDAO.findById(id);
         if (professor == null) {
             Logger logger = Logger.getLogger(ProfessorServiceImpl.class.getName());
             logger.warning("Professor with the given name does not exist.");
@@ -110,8 +115,8 @@ public class ProfessorServiceImpl implements ProfessorService{
     }
 
     @Override
-    public List<DiplomaThesis> listProfessorTheses(String fullName) {
-        Professor professor = professorDAO.findByFullName(fullName);
+    public List<DiplomaThesis> listProfessorTheses(int id) {
+        Professor professor = professorDAO.findById(id);
         if (professor == null) {
             Logger logger = Logger.getLogger(ProfessorServiceImpl.class.getName());
             logger.warning("Professor with the given name does not exist.");

@@ -13,28 +13,26 @@ import javax.validation.constraints.Size;
 @ToString(callSuper = true)
 @Entity
 @Table(name = "STUDENT")
-public class Student extends BaseId {
+public class Student {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-    @Column(length = 50, nullable = false, unique = true)
-    @NotNull
+    @Column(name= "fullName")
     private String fullName;
 
     @Size(min= 0, max= 4, message= "Cannot apply for diploma")
-    @Column(length= 2, nullable = false)
-    @NotNull
+    @Column(length= 2)
     private int yrsOfStudies;
 
     @Size(min= 0, max= 5, message= "Cannot apply for diploma")
-    @Column(length= 2, nullable = false )
-    @NotNull
+    @Column(length= 2)
     private double grade;
 
     @Size(min=0, max=50, message= "Professor will choose")
-    @Column(length= 2, nullable = false )
-    @NotNull
+    @Column(length= 2)
     private int remainCourses;
 
-    @NotNull
     private int regNum;
 
     @OneToOne(cascade = CascadeType.ALL)

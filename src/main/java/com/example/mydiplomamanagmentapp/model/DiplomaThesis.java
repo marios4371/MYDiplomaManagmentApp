@@ -11,7 +11,11 @@ import javax.persistence.*;
 @ToString(callSuper = true)
 @Entity
 @Table(name = "DIPLOMATHESIS")
-public class DiplomaThesis extends BaseId {
+public class DiplomaThesis{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
     @Column(length = 10, nullable = false)
     private String title;
 

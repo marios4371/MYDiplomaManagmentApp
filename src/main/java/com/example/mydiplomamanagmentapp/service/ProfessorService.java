@@ -6,15 +6,14 @@ import com.example.mydiplomamanagmentapp.model.DiplomaThesis;
 import com.example.mydiplomamanagmentapp.model.Professor;
 import org.springframework.stereotype.Service;
 
-import java.awt.*;
 import java.util.List;
 
 @Service
 public interface ProfessorService{
-    Professor retrieveProfile(String username);
+    //Professor retrieveProfile(String username);
     void saveProfessor(Professor professor);
-    List<DiplomaSubject> listProfessorSubjects(String title);
-    void addDiplomaSubject(String title, DiplomaSubject diplomaSubject);
+    List<DiplomaSubject> listProfessorSubjects(int id);
+    void addDiplomaSubject(int id, DiplomaSubject diplomaSubject);
     
     DiplomaSubject allDiplomaSubjects(String title);
 
@@ -22,7 +21,7 @@ public interface ProfessorService{
 
     List<Application> listApplications(String subjectName, Integer numOfApps);
 
-    List<DiplomaThesis> listProfessorTheses(String title);
+    List<DiplomaThesis> listProfessorTheses(int id);
 
     void assignDiplomaSubject(String title, Integer integer);
 

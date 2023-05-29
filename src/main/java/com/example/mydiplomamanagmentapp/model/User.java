@@ -1,5 +1,6 @@
 package com.example.mydiplomamanagmentapp.model;
 import com.sun.istack.NotNull;
+import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
@@ -11,32 +12,29 @@ import java.util.Collection;
 import java.util.Collections;
 
 @Setter
+@Getter
 @ToString(callSuper = true)
 @Entity
-@Table(name = "USER")
-public class User extends BaseId implements UserDetails {
+@Table(name = "user")
+public class User  implements UserDetails {
 
-
-    //private String userClass;
-    @Column(length= 15, nullable = false, unique = true)
-    @NotNull
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    @Column(name= "username")
     private String username;
-    @Column(length= 15, nullable = false)
+    @Column(length= 15)
     private String password;
 
     @JoinColumn(name = "role")
+    @Enumerated(EnumType.STRING)
     private Role role;
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
       SimpleGrantedAuthority authorities = new SimpleGrantedAuthority(role.name());
       return Collections.singletonList(authorities);
     }
-    /*public String getUserClass(){
-        return userClass;
-    }*/
-
 
     @Override
     public String getPassword() {

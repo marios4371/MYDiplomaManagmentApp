@@ -6,7 +6,6 @@ import com.example.mydiplomamanagmentapp.model.DiplomaThesis;
 import com.example.mydiplomamanagmentapp.model.Student;
 import org.springframework.stereotype.Service;
 
-import javax.security.auth.Subject;
 import java.util.List;
 
 @Service
@@ -16,5 +15,5 @@ public interface StudentService {
     void saveProfile(Student student);
     Student retrieveProfile(String string);
     List<DiplomaSubject> listStudentSubjects(String fullName);
-    void applyToSubject(String string, Integer integer);
+    //void applyToSubject(String string, Integer integer);
 }

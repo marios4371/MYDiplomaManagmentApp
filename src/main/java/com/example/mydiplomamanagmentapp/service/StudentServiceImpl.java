@@ -1,21 +1,22 @@
 package com.example.mydiplomamanagmentapp.service;
 
-import com.example.mydiplomamanagmentapp.dao.ApplicationDAO;
 import com.example.mydiplomamanagmentapp.dao.DiplomaSubjectDAO;
 import com.example.mydiplomamanagmentapp.dao.StudentDAO;
 import com.example.mydiplomamanagmentapp.model.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.security.auth.Subject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
 @Service
 public class StudentServiceImpl implements StudentService{
+    @Autowired
     StudentDAO studentDAO;
+    @Autowired
     DiplomaSubjectDAO diplomaSubjectDAO;
-    ApplicationDAO applicationDAO;
+
 
     @Override
     public Application application(Student student, DiplomaThesis diplomaThesis) {
@@ -49,10 +50,10 @@ public class StudentServiceImpl implements StudentService{
         return studentSubjects;
     }
 
-    @Override
+    /*@Override
     public void applyToSubject(String string, Integer integer) {
         studentDAO.save(applicationDAO.findByFullName(string, integer));
-    }
+    }*/
 
 
 }
